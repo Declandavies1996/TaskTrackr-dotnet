@@ -1,0 +1,39 @@
+﻿@page "/TasksList"
+@model Task_Tracker.Pages.TasksListModel
+@{
+}
+<h1>Task Tracker - Tasks List</h1>
+<div class="user-info">
+    <h2>Manage Tasks @User.Identity.Name</h2>
+</div>
+<div class="tasks">
+    @if (Model == null || !Model.ToDoItems.Any())
+    {
+        <p>No tasks available. <a href="#">Add a new task</a>.</p>
+    }
+    else
+    {
+        <div class="card-deck">
+            @foreach (var task in Model.ToDoItems)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@task.ToDoItemName</h5>
+                        <p class="card-text">@task.ToDoItemDescription</p>
+                        <p class="card-text"><strong>Due Date:</strong> @task.DueDate.ToLongDateString()</p>
+                        <p class="card-text"><strong>Status:</strong> @task.Status.StatusName</p>
+                        <div class="actions">
+                            <form method="post" class="d-inline">
+                                <input type="hidden"  asp-for="ToDoItemId" value="@task.ToDoItemId" />
+                                <button class="btn btn-success btn-sm" type="submit">Mark As Completed</button>
+                            </form>
+                            <a class="btn btn-primary btn-sm ml-2" asp-page="/UpdateTask" asp-route-toDoItemId="@task.ToDoItemId">Edit</a>
+                            <a class="btn btn-danger btn-sm ml-2" asp-page="/DeleteTask" asp-route-toDoItemId="@task.ToDoItemId">Delete</a>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

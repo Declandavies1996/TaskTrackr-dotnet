@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Task_Tracker.Models;
 
 namespace Task_Tracker.Data
 {
@@ -9,5 +10,7 @@ namespace Task_Tracker.Data
             : base(options)
         {
         }
+        public DbSet<Status> Statuses { get; set; }
+        public DbSet<ToDoItem> ToDoItems { get; set; }
     }
 }

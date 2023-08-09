@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Task_Tracker.Data;
+using Task_Tracker.Interfaces;
+using Task_Tracker.Repositorys;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddTransient<IToDoItemsRepository, ToDoItemsRepository>();
+builder.Services.AddTransient<IStatusRepository, StatusRepository>();
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

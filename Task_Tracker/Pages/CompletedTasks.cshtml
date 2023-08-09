@@ -1,0 +1,30 @@
+﻿@page "/CompletedTasks"
+@model Task_Tracker.Pages.CompletedTasksModel
+@{
+}
+<h1>Task Tracker - Tasks List</h1>
+<div class="user-info">
+    <h2>Manage Tasks @User.Identity.Name</h2>
+</div>
+<div class="tasks">
+    @if (Model == null || !Model.ToDoItems.Any())
+    {
+        <p>No Completed Tasks</p>
+    }
+    else
+    {
+        <div class="card-deck">
+            @foreach (var task in Model.ToDoItems)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@task.ToDoItemName</h5>
+                        <p class="card-text">@task.ToDoItemDescription</p>
+                        <p class="card-text"><strong>Due Date:</strong> @task.DueDate.ToLongDateString()</p>
+                        <p class="card-text"><strong>Status:</strong> @task.Status.StatusName</p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
