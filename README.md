@@ -1,6 +1,6 @@
 # Task Tracker App
 
-![Task Tracker App](app-screenshot.png)
+![Task Tracker App](TaskTracker.png)
 
 ## Introduction
 
